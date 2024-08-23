@@ -1,4 +1,16 @@
-import { ReferencePoint, ScaleCalculatorOptions } from './types';
+
+
+export type ReferencePoint = {
+  width: number;
+  scale: number;
+}
+
+export type ScaleCalculatorOptions = {
+  referencePoints: ReferencePoint[];
+  minScale?: number;
+  maxScale?: number;
+}
+
 
 export class VWScaleCalculator {
   private referencePoints: ReferencePoint[];
