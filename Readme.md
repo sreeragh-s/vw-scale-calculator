@@ -33,21 +33,33 @@ First, import the `VWScaleCalculator` class and create an instance with your des
 ### Importing and Initializing
 
 ```typescript
-import { VWScaleCalculator, ReferencePoint } from 'vw-scale-calculator';
+import { VWScaleCalculator, ScaleCalculatorOptions } from 'vw-scale-calculator';
 
-// Define your reference points
-const referencePoints: ReferencePoint[] = [
-  { width: 1263, scale: 0.6 },
-  { width: 1519, scale: 0.66 },
-  { width: 1903, scale: 0.72 },
-];
+// Define reference points and options
+const options: ScaleCalculatorOptions = {
+  referencePoints: [
+    { width: 600, scale: 0.5 },
+    { width: 1200, scale: 1.0 },
+    { width: 1800, scale: 1.5 }
+  ],
+  minScale: 0.5,
+  maxScale: 1.5
+};
 
 // Create an instance of VWScaleCalculator
-const calculator = new VWScaleCalculator(referencePoints);
+const calculator = new VWScaleCalculator(options);
 
 // Calculate the scale based on the current viewport width
 const scale = calculator.calculateScale(window.innerWidth);
-console.log(scale);
+console.log(`Current scale: ${scale}`);
+
+// Set up resize handling
+const cleanupResizeListener = calculator.onResize((scale) => {
+  console.log(`Updated scale on resize: ${scale}`);
+});
+
+// Call `cleanupResizeListener` to remove the event listener when no longer needed
+
 ```
 
 ## API

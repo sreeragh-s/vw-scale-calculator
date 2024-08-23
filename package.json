@@ -1,6 +1,6 @@
 {
   "name": "vw-scale-calculator",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Calculate scale based on viewport width and reference points",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,7 +9,7 @@
     "prepublishOnly": "npm run build"
   },
   "keywords": ["viewport", "scale", "calculator", "responsive"],
-  "author": "Your Name",
+  "author": "Sreeragh",
   "license": "MIT",
 
 "peerDependencies": {
