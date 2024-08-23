@@ -81,7 +81,7 @@ console.log(`The scale is: ${scale}`);
 
 ## License
 
-This package is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+This package is licensed under the MIT License. See the [LICENSE](https://github.com/sreeragh-s/vw-scale-calculator/blob/main/LICENSE) file for more details.
 
 ## Contributing
 
