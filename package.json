@@ -1,0 +1,20 @@
+{
+  "name": "viewport-scale-calculator",
+  "version": "1.0.0",
+  "description": "A React hook for calculating scale based on viewport width and reference points.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react",
+    "hook",
+    "viewport",
+    "scale"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^18.0.0"
+  }
+}
