@@ -1,5 +1,5 @@
 {
-  "name": "viewport-scale-calculator",
+  "name": "vw-scale-calculator",
   "version": "1.0.0",
   "description": "A React hook for calculating scale based on viewport width and reference points.",
   "main": "index.js",

@@ -1,9 +1,9 @@
 ## Installation
 
 ```bash
-npm install viewport-scale-calculator
+npm install vw-scale-calculator
 # or
-yarn add viewport-scale-calculator
+yarn add vw-scale-calculator
 ```
 
 ## Usage
@@ -14,7 +14,7 @@ Import the `useViewportScale` hook from the package and pass your custom referen
 
 ```jsx
 import React from 'react';
-import useViewportScale from 'viewport-scale-calculator';
+import useViewportScale from 'vw-scale-calculator';
 
 function MyComponent() {
   // Define your reference points here
@@ -43,7 +43,7 @@ export default MyComponent;
 If you need to calculate the scale outside of a React component, you can use the `calculateScale` function directly:
 
 ```js
-import { calculateScale } from 'viewport-scale-calculator';
+import { calculateScale } from 'vw-scale-calculator';
 
 // Define your reference points
 const referencePoints = [
@@ -85,5 +85,5 @@ This package is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contributing
 
-If you'd like to contribute to this package, please open an issue or a pull request on the [GitHub repository](https://github.com/yourusername/viewport-scale-calculator).
+If you'd like to contribute to this package, please open an issue or a pull request on the [GitHub repository](https://github.com/yourusername/vw-scale-calculator).
 ```
