@@ -7,7 +7,9 @@
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "outDir": "./dist",
-    "lib": ["ES2015", "DOM"]       // Include "ES2015" or "ES6" for newer JavaScript features
+    "declaration": true,            // Generate .d.ts files
+    "declarationDir": "./dist",     // Where to output .d.ts files
+    "lib": ["ES2015", "DOM"]        // Include ES6 and DOM libs
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
