@@ -1,10 +1,12 @@
 {
   "name": "vw-scale-calculator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A React hook for calculating scale based on viewport width and reference points.",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "react",
@@ -16,5 +18,9 @@
   "license": "MIT",
   "dependencies": {
     "react": "^18.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.0.0",
+    "@types/react": "^18.0.0"
   }
 }
