@@ -1,5 +1,3 @@
-// index.js
-
 function calculateScale(viewportWidth, referencePoints) {
     referencePoints.sort((a, b) => a.width - b.width);
     let lowerBound = referencePoints[0];
