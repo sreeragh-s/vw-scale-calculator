@@ -1,40 +1,53 @@
-interface ReferencePoint {
-    width: number;
-    scale: number;
+import { ReferencePoint, ScaleCalculatorOptions } from './types';
+
+export class VWScaleCalculator {
+  private referencePoints: ReferencePoint[];
+  private minScale: number;
+  private maxScale: number;
+
+  constructor(options: ScaleCalculatorOptions) {
+    this.referencePoints = options.referencePoints.sort((a, b) => a.width - b.width);
+    this.minScale = options.minScale ?? 0.5;
+    this.maxScale = options.maxScale ?? 1.0;
   }
-  
-  export function calculateScale(
-    viewportWidth: number,
-    referencePoints: ReferencePoint[]
-  ): number {
-    if (referencePoints.length < 2) {
-      throw new Error('At least two reference points are required');
-    }
-  
-    const sortedReferencePoints = [...referencePoints].sort((a, b) => a.width - b.width);
-    let lowerBound = sortedReferencePoints[0];
-    let upperBound = sortedReferencePoints[sortedReferencePoints.length - 1];
-  
-    for (let i = 0; i < sortedReferencePoints.length - 1; i++) {
+
+  calculateScale(viewportWidth: number): number {
+    let lowerBound = this.referencePoints[0];
+    let upperBound = this.referencePoints[this.referencePoints.length - 1];
+
+    for (let i = 0; i < this.referencePoints.length - 1; i++) {
       if (
-        viewportWidth >= sortedReferencePoints[i].width &&
-        viewportWidth < sortedReferencePoints[i + 1].width
+        viewportWidth >= this.referencePoints[i].width &&
+        viewportWidth < this.referencePoints[i + 1].width
       ) {
-        lowerBound = sortedReferencePoints[i];
-        upperBound = sortedReferencePoints[i + 1];
+        lowerBound = this.referencePoints[i];
+        upperBound = this.referencePoints[i + 1];
         break;
       }
     }
-  
+
     const widthRatio =
       (viewportWidth - lowerBound.width) /
       (upperBound.width - lowerBound.width);
+
     const calculatedScale =
       lowerBound.scale + widthRatio * (upperBound.scale - lowerBound.scale);
-  
-    return Math.max(0.5, Math.min(1, calculatedScale));
+
+    return Math.max(this.minScale, Math.min(this.maxScale, calculatedScale));
   }
-  
-  export function createScaleCalculator(referencePoints: ReferencePoint[]) {
-    return (viewportWidth: number) => calculateScale(viewportWidth, referencePoints);
+
+  onResize(callback: (scale: number) => void): () => void {
+    const handleResize = () => {
+      const scale = this.calculateScale(window.innerWidth);
+      callback(scale);
+    };
+
+    handleResize(); // Initial call
+    window.addEventListener('resize', handleResize);
+
+    // Return a function to remove the event listener
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }
+}

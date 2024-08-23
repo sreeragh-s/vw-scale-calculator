@@ -1,18 +1,26 @@
-
-
 # vw-scale-calculator
 
-`vw-scale-calculator` is a React hook designed to dynamically scale components based on the viewport width. It allows you to create responsive and adaptable user interfaces that automatically adjust their scale as the window size changes.
+`vw-scale-calculator` is a utility package to calculate a scale factor based on the viewport width, with customizable reference points. This is especially useful for responsive web design where elements need to scale based on the user's screen size.
+
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [API](#api)
+- [Examples](#examples)
+- [Development](#development)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Installation
 
-To get started with `vw-scale-calculator`, you need to install it from npm. You can do this using either npm or Yarn:
+You can install `vw-scale-calculator` using npm:
 
 ```bash
 npm install vw-scale-calculator
 ```
 
-or
+Or with yarn:
 
 ```bash
 yarn add vw-scale-calculator
@@ -20,107 +28,132 @@ yarn add vw-scale-calculator
 
 ## Usage
 
-### Importing the Hook
+First, import the `VWScaleCalculator` class and create an instance with your desired reference points.
 
-First, import the `useViewportScale` hook into your React component:
+### Importing and Initializing
 
-```tsx
-import React from 'react';
-import useViewportScale from 'vw-scale-calculator';
-```
+```typescript
+import { VWScaleCalculator, ReferencePoint } from 'vw-scale-calculator';
 
-### Defining Reference Points
-
-Create an array of reference points that define how the scale should change based on viewport width. Each reference point is an object with a `width` and a corresponding `scale` value.
-
-```tsx
-const referencePoints = [
-  { width: 1263, scale: 0.6 },
-  { width: 1519, scale: 0.66 },
-  { width: 1903, scale: 0.72 },
-];
-```
-
-### Using the Hook in a Component
-
-Use the `useViewportScale` hook in your component, passing the reference points array as an argument. The hook returns the current scale value, which you can then use to adjust the style or layout of your component.
-
-```tsx
-const MyComponent: React.FC = () => {
-  // Get the current scale based on the viewport width
-  const scale = useViewportScale(referencePoints);
-
-  return (
-    <div style={{ transform: `scale(${scale})`, border: '1px solid black', padding: '20px' }}>
-      This content scales with the viewport width.
-    </div>
-  );
-};
-
-export default MyComponent;
-```
-
-### Example
-
-Here’s a complete example that demonstrates how to use `useViewportScale`:
-
-```tsx
-import React from 'react';
-import useViewportScale from 'vw-scale-calculator';
-
-// Define the reference points
-const referencePoints = [
+// Define your reference points
+const referencePoints: ReferencePoint[] = [
   { width: 1263, scale: 0.6 },
   { width: 1519, scale: 0.66 },
   { width: 1903, scale: 0.72 },
 ];
 
-const MyComponent: React.FC = () => {
-  // Calculate the scale based on the viewport width
-  const scale = useViewportScale(referencePoints);
+// Create an instance of VWScaleCalculator
+const calculator = new VWScaleCalculator(referencePoints);
 
-  return (
-    <div style={{ transform: `scale(${scale})`, border: '1px solid black', padding: '20px' }}>
-      This content scales with the viewport width.
-    </div>
-  );
-};
-
-export default MyComponent;
+// Calculate the scale based on the current viewport width
+const scale = calculator.calculateScale(window.innerWidth);
+console.log(scale);
 ```
 
 ## API
 
-### `useViewportScale(referencePoints: ReferencePoint[])`
+### `VWScaleCalculator`
 
-- **Parameters**
-  - `referencePoints`: An array of objects where each object contains:
-    - `width`: The viewport width at which the scale changes (number).
-    - `scale`: The scale value corresponding to the viewport width (number).
+#### Constructor
 
-- **Returns**
-  - The calculated scale value based on the current viewport width (number).
+```typescript
+new VWScaleCalculator(referencePoints: ReferencePoint[]);
+```
 
-## License
+- **referencePoints**: An array of `ReferencePoint` objects that define the widths and corresponding scale factors.
 
-This package is licensed under the [MIT License](https://github.com/sreeragh-s/vw-scale-calculator/blob/main/LICENSE).
+#### Methods
+
+- **`calculateScale(viewportWidth: number): number`**
+
+  Calculates the scale factor based on the provided viewport width.
+
+  - **viewportWidth**: The current viewport width to calculate the scale for.
+
+  Returns the calculated scale factor as a `number`.
+
+- **`setReferencePoints(referencePoints: ReferencePoint[]): void`**
+
+  Updates the reference points used for calculating the scale.
+
+  - **referencePoints**: An array of new `ReferencePoint` objects.
+
+### `ReferencePoint`
+
+A TypeScript type defining the structure for a reference point:
+
+```typescript
+type ReferencePoint = {
+  width: number; // The viewport width at which this scale should apply.
+  scale: number; // The scale factor to use at the specified width.
+};
+```
+
+## Examples
+
+### Example: Dynamically Adjusting Element Scale
+
+If you want to dynamically adjust an element's scale based on the window width, you can use the following code:
+
+```typescript
+import { VWScaleCalculator, ReferencePoint } from 'vw-scale-calculator';
+
+const referencePoints: ReferencePoint[] = [
+  { width: 1263, scale: 0.6 },
+  { width: 1519, scale: 0.66 },
+  { width: 1903, scale: 0.72 },
+];
+
+const calculator = new VWScaleCalculator(referencePoints);
+
+const updateElementScale = () => {
+  const scale = calculator.calculateScale(window.innerWidth);
+  document.getElementById('scalable-element').style.transform = `scale(${scale})`;
+};
+
+window.addEventListener('resize', updateElementScale);
+updateElementScale(); // Initialize on page load
+```
+
+## Development
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (version 12.x or higher recommended)
+- [npm](https://www.npmjs.com/) (comes with Node.js)
+- [TypeScript](https://www.typescriptlang.org/)
+
+### Building the Project
+
+To build the project, run:
+
+```bash
+npm run build
+```
+
+This will compile the TypeScript code into JavaScript and output it into the `dist` folder.
+
+### Running Tests
+
+If you have set up tests, you can run them using:
+
+```bash
+npm test
+```
 
 ## Contributing
 
-Contributions are welcome! If you'd like to contribute to this project, please follow these steps:
+Contributions are welcome! Please fork the [Github](https://github.com/sreeragh-s/vw-scale-calculator) repository and submit a pull request for any features, bug fixes, or enhancements. Make sure to follow the code style and add relevant tests.
 
-1. Fork the repository on [GitHub](https://github.com/sreeragh-s/vw-scale-calculator/blob/main/LICENSE).
-2. Create a new branch for your feature or fix.
-3. Make your changes and test thoroughly.
-4. Submit a pull request with a clear description of your changes.
+## License
 
-## Contact
-
-For questions or support, please open an issue on the GitHub repository or contact the author directly.
-
-## Acknowledgments
-
-Thank you to the contributors and the open-source community for their support and inspiration.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/sreeragh-s/vw-scale-calculator/blob/main/LICENSE) file for details.
 ```
 
-This `README.md` file includes sections on installation, usage, API details, and more, providing clear guidance for users to get started with the `vw-scale-calculator` package.
+### How to Use the README
+
+- Copy the content above into a new `README.md` file in the root of your project.
+- Adjust any sections as necessary to fit your project specifics, especially under **Development** and **Contributing** if you have additional guidelines or tools.
+- Make sure to update any placeholder text (e.g., "Your Name") with your actual details.
+
+This README provides a thorough overview of your package, including installation, usage, and contribution guidelines, which will help users understand and utilize your package effectively.

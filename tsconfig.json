@@ -1,12 +1,14 @@
-
 {
-    "compilerOptions": {
-      "target": "es5",
-      "module": "commonjs",
-      "declaration": true,
-      "outDir": "./dist",
-      "strict": true
-    },
-    "include": ["src"],
-    "exclude": ["node_modules", "dist"]
-  }
+  "compilerOptions": {
+    "target": "ES6",                // or "ES2015"
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "outDir": "./dist",
+    "lib": ["ES2015", "DOM"]       // Include "ES2015" or "ES6" for newer JavaScript features
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
