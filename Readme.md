@@ -85,5 +85,5 @@ This package is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contributing
 
-If you'd like to contribute to this package, please open an issue or a pull request on the [GitHub repository](https://github.com/yourusername/vw-scale-calculator).
-```
+If you'd like to contribute to this package, please open an issue or a pull request on the [GitHub repository](https://github.com/sreeragh-s/vw-scale-calculator).
+
