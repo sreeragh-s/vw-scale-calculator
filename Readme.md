@@ -145,14 +145,6 @@ npm run build
 
 This will compile the TypeScript code into JavaScript and output it into the `dist` folder.
 
-### Running Tests
-
-If you have set up tests, you can run them using:
-
-```bash
-npm test
-```
-
 ## Contributing
 
 Contributions are welcome! Please fork the [Github](https://github.com/sreeragh-s/vw-scale-calculator) repository and submit a pull request for any features, bug fixes, or enhancements. Make sure to follow the code style and add relevant tests.
@@ -160,4 +152,4 @@ Contributions are welcome! Please fork the [Github](https://github.com/sreeragh-
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](https://github.com/sreeragh-s/vw-scale-calculator/blob/main/LICENSE) file for details.
-```
+
