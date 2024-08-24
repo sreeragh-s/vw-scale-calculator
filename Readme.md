@@ -161,11 +161,3 @@ Contributions are welcome! Please fork the [Github](https://github.com/sreeragh-
 
 This project is licensed under the MIT License. See the [LICENSE](https://github.com/sreeragh-s/vw-scale-calculator/blob/main/LICENSE) file for details.
 ```
-
-### How to Use the README
-
-- Copy the content above into a new `README.md` file in the root of your project.
-- Adjust any sections as necessary to fit your project specifics, especially under **Development** and **Contributing** if you have additional guidelines or tools.
-- Make sure to update any placeholder text (e.g., "Your Name") with your actual details.
-
-This README provides a thorough overview of your package, including installation, usage, and contribution guidelines, which will help users understand and utilize your package effectively.
